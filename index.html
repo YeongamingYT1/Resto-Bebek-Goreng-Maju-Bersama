@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bebek Goreng Maju Bersama — Empuk Sampai ke Tulang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --bg: #FBF3E7;
+    --bg-alt: #F3E4CE;
+    --card: #FFFDF8;
+    --primary: #8B0000;
+    --primary-dark: #5C0000;
+    --gold: #D4AF37;
+    --gold-light: #E9D07F;
+    --text: #2B1810;
+    --text-muted: #6B4F3F;
+    --wa: #25D366;
+    --wa-dark: #1DA851;
+    --radius-lg: 24px;
+    --radius-md: 14px;
+    --shadow: 0 12px 32px rgba(43,24,16,0.14);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --max-w: 1180px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; }
+  h1,h2,h3{ font-family: var(--font-display); margin:0; line-height:1.15; color: var(--primary-dark); }
+  p{ margin:0; }
+  .container{ max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+  .section{ padding: 88px 0; }
+  .section-alt{ background: var(--bg-alt); }
+  .eyebrow{
+    display:inline-block; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color: var(--primary); font-size: 0.95rem; margin-bottom: 14px;
+  }
+  .section-title{ font-size: clamp(1.9rem, 1.2rem + 2.4vw, 2.7rem); font-weight:700; }
+  .section-sub{ margin-top:14px; font-size:1.15rem; color: var(--text-muted); max-width: 640px; }
+  .center{ text-align:center; margin-left:auto; margin-right:auto; }
+
+  :focus-visible{ outline: 3px solid var(--primary); outline-offset: 3px; }
+
+  /* ============ BUTTONS ============ */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    font-family: var(--font-body); font-weight:700; font-size:1.15rem;
+    padding: 1rem 2rem; border-radius: 100px; border: none; cursor:pointer;
+    min-height: 58px; text-decoration:none; transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn:active{ transform: translateY(0); }
+  .btn-wa{ background: var(--wa); color:#fff; box-shadow: 0 10px 24px rgba(37,211,102,0.35); }
+  .btn-wa:hover{ background: var(--wa-dark); }
+  .btn-outline{
+    background: transparent; color: var(--primary-dark); border: 2.5px solid var(--gold);
+  }
+  .btn-outline:hover{ background: var(--gold-light); }
+  .btn svg{ width:24px; height:24px; flex-shrink:0; }
+
+  /* ============ HEADER ============ */
+  .site-header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(251,243,231,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(139,0,0,0.12);
+  }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; padding: 16px 24px; }
+  .brand{ display:flex; flex-direction:column; }
+  .brand-name{ font-family: var(--font-display); font-weight:700; font-size:1.4rem; color: var(--primary-dark); }
+  .brand-tagline{ font-size:0.85rem; color: var(--text-muted); }
+  .header-cta{ font-size:1rem; padding: 0.7rem 1.4rem; min-height:48px; }
+
+  /* ============ SIGNATURE SEAL ============ */
+  .seal{
+    --seal-size: 150px;
+    width: var(--seal-size); height: var(--seal-size); border-radius:50%;
+    background: repeating-conic-gradient(var(--gold) 0deg 9deg, transparent 9deg 20deg);
+    display:flex; align-items:center; justify-content:center;
+    animation: spin 46s linear infinite;
+    flex-shrink:0;
+  }
+  .seal-inner{
+    width: calc(var(--seal-size) - 26px); height: calc(var(--seal-size) - 26px); border-radius:50%;
+    background: var(--primary); color:#fff; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    animation: spin-reverse 46s linear infinite;
+    box-shadow: inset 0 0 0 2px var(--gold-light);
+  }
+  .seal-inner strong{ font-family: var(--font-display); font-size:1.05rem; line-height:1.15; }
+  .seal-inner span{ font-size:0.65rem; letter-spacing:.08em; margin-top:2px; }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  @keyframes spin-reverse{ to{ transform: rotate(-360deg); } }
+
+  /* ============ HERO ============ */
+  .hero{ padding: 64px 0 96px; }
+  .hero-grid{ display:grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items:center; }
+  .hero h1{ font-size: clamp(2.3rem, 1.4rem + 3.6vw, 3.7rem); font-weight:800; }
+  .hero-sub{ margin-top: 22px; font-size: 1.25rem; color: var(--text-muted); max-width: 540px; }
+  .hero-actions{ margin-top: 34px; display:flex; flex-wrap:wrap; gap: 16px; }
+  .hero-media{ position:relative; }
+  .hero-media .img-frame{
+    border-radius: var(--radius-lg); overflow:hidden; box-shadow: var(--shadow);
+    aspect-ratio: 4/3.1; border: 6px solid var(--card);
+  }
+  .hero-media .seal{ position:absolute; top:-24px; right:-18px; }
+
+  /* image fallback (shows if placeholder file isn't found yet) */
+  .img-wrap{ position:relative; width:100%; height:100%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); }
+  .img-wrap img{ width:100%; height:100%; object-fit:cover; }
+  .img-fallback-label{
+    display:none; position:absolute; inset:0; color: var(--gold-light);
+    align-items:center; justify-content:center; text-align:center; padding: 20px;
+    font-family: var(--font-display); font-size:1.1rem;
+  }
+  .img-wrap.broken img{ display:none; }
+  .img-wrap.broken .img-fallback-label{ display:flex; }
+
+  /* ============ TRUST BADGES ============ */
+  .badges-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+  .badge-card{
+    background: var(--card); border-radius: var(--radius-md); padding: 32px 26px;
+    box-shadow: var(--shadow); text-align:center; opacity:1;
+  }
+  .badge-icon{
+    width:76px; height:76px; border-radius:50%; margin: 0 auto 18px;
+    background: var(--bg-alt); display:flex; align-items:center; justify-content:center; font-size:2.1rem;
+    border: 2px dashed var(--gold);
+  }
+  .badge-card h3{ font-size: 1.35rem; margin-bottom: 10px; }
+  .badge-card p{ color: var(--text-muted); font-size:1.02rem; }
+
+  /* ============ MENU ============ */
+  .menu-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 52px; }
+  .menu-card{
+    background: var(--card); border-radius: var(--radius-md); overflow:hidden; box-shadow: var(--shadow);
+    position:relative; display:flex; flex-direction:column;
+  }
+  .menu-card .img-wrap{ aspect-ratio: 4/3; }
+  .menu-card-body{ padding: 22px 22px 26px; }
+  .menu-card h3{ font-size:1.3rem; margin-bottom:8px; }
+  .menu-card p.desc{ color: var(--text-muted); font-size:0.98rem; margin-bottom: 14px; }
+  .menu-price{ font-weight:800; font-size:1.35rem; color: var(--primary); }
+  .ribbon{
+    position:absolute; top:16px; left:-8px; background: var(--gold); color: var(--primary-dark);
+    font-weight:800; font-size:0.8rem; padding: 6px 16px 6px 20px; letter-spacing:.03em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+  }
+  .ribbon::after{
+    content:""; position:absolute; left:0; bottom:-8px; border-style:solid;
+    border-width: 8px 8px 0 0; border-color: var(--primary-dark) transparent transparent transparent;
+  }
+  .menu-note{ margin-top: 28px; font-size:0.98rem; color: var(--text-muted); text-align:center; }
+
+  /* ============ SAMBAL ============ */
+  .sambal-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top:52px; }
+  .sambal-card{
+    background: var(--primary); color: #fff; border-radius: var(--radius-md); padding: 30px 26px;
+    text-align:center;
+  }
+  .sambal-chip{
+    display:inline-block; background: var(--gold); color: var(--primary-dark); font-weight:800;
+    padding: 6px 18px; border-radius: 100px; font-size:0.85rem; margin-bottom:16px; letter-spacing:.03em;
+  }
+  .sambal-card h3{ color:#fff; font-size:1.4rem; margin-bottom:10px; }
+  .sambal-card p{ color: var(--gold-light); font-size:1rem; }
+
+  /* ============ DAPUR / VIDEO ============ */
+  .dapur-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items:center; }
+  .video-frame{
+    border-radius: var(--radius-lg); overflow:hidden; box-shadow: var(--shadow);
+    border: 6px solid var(--card); background: var(--primary-dark); aspect-ratio: 16/10;
+  }
+  .video-frame video{ width:100%; height:100%; object-fit:cover; background: var(--primary-dark); }
+
+  /* ============ KATERING ============ */
+  .katering-box{
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color:#fff; border-radius: var(--radius-lg); padding: 56px 48px; text-align:center;
+    box-shadow: var(--shadow);
+  }
+  .katering-box h2{ color:#fff; }
+  .katering-box p{ color: var(--gold-light); margin-top:14px; font-size:1.15rem; max-width:600px; margin-left:auto; margin-right:auto; }
+  .katering-box .btn-wa{ margin-top: 30px; }
+
+  /* ============ FORM PESAN ============ */
+  .order-card{
+    background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    padding: 48px; max-width: 640px; margin: 52px auto 0;
+  }
+  .field{ margin-bottom: 24px; }
+  .field label{ display:block; font-weight:700; margin-bottom: 10px; font-size:1.05rem; }
+  .field input, .field select{
+    width:100%; padding: 1rem 1.1rem; border-radius: var(--radius-md); border: 2px solid var(--bg-alt);
+    font-family: var(--font-body); font-size:1.1rem; background: var(--bg); color: var(--text);
+    min-height: 58px;
+  }
+  .field input:focus, .field select:focus{ border-color: var(--primary); }
+  .form-error{ color: var(--primary); font-weight:700; margin-top: -10px; margin-bottom:20px; display:none; }
+  .form-error.show{ display:block; }
+  .form-success{ color: var(--wa-dark); font-weight:700; margin-top: 18px; display:none; text-align:center; }
+  .form-success.show{ display:block; }
+  #pesan .btn-wa{ width:100%; }
+
+  /* ============ FOOTER ============ */
+  footer{ background: var(--primary-dark); color: var(--gold-light); padding: 48px 0 32px; }
+  footer .container{ text-align:center; }
+  footer .brand-name{ color:#fff; }
+  footer p{ margin-top:8px; font-size:0.98rem; }
+  footer .copyright{ margin-top:24px; color: rgba(255,255,255,0.55); font-size:0.85rem; }
+
+  /* ============ FLOATING WA BUTTON ============ */
+  .float-wa{
+    position: fixed; bottom: 24px; right: 24px; z-index: 60;
+    width: 64px; height: 64px; border-radius:50%; background: var(--wa); color:#fff;
+    display:flex; align-items:center; justify-content:center; box-shadow: 0 10px 26px rgba(37,211,102,0.45);
+    text-decoration:none; animation: pulse-once 1.8s ease-out 1;
+  }
+  .float-wa svg{ width:32px; height:32px; }
+  @keyframes pulse-once{
+    0%{ transform: scale(0.9); } 40%{ transform: scale(1.08); } 100%{ transform: scale(1); }
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible{ opacity:1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .seal, .seal-inner, .float-wa{ animation: none !important; }
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px){
+    .hero-grid, .dapur-grid{ grid-template-columns: 1fr; }
+    .hero-media{ order:-1; }
+    .badges-grid, .menu-grid, .sambal-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px){
+    body{ font-size: 17px; }
+    .section{ padding: 60px 0; }
+    .badges-grid, .menu-grid, .sambal-grid{ grid-template-columns: 1fr; }
+    .header-inner{ flex-direction:column; gap:12px; align-items:flex-start; }
+    .header-cta{ align-self:stretch; text-align:center; }
+    .order-card{ padding: 30px 22px; }
+    .katering-box{ padding: 40px 24px; }
+    .hero-actions .btn{ width:100%; }
+    .seal{ --seal-size: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-name">Bebek Goreng Maju Bersama</span>
+      <span class="brand-tagline">Resep Rahasia Keluarga</span>
+    </div>
+    <a href="#pesan" class="btn btn-wa header-cta">Pesan Sekarang</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Resep Rahasia Keluarga, Sejak Dulu</span>
+      <h1>Bebek Goreng<br>Empuk Sampai ke Tulang</h1>
+      <p class="hero-sub">Dijamin 100% empuk, tidak bau amis, dan selalu digoreng segar setiap hari. Cocok untuk keluarga, arisan, sampai acara kantor.</p>
+      <div class="hero-actions">
+        <a href="#pesan" class="btn btn-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2zm5.8 14.13c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.33-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.7-.17 1.38z"/></svg>
+          Pesan via WhatsApp
+        </a>
+        <a href="#menu" class="btn btn-outline">Lihat Menu &amp; Harga</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="img-frame">
+        <div class="img-wrap">
+          <img src="https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Bebek Goreng Kremes Bebek Goreng Maju Bersama" onerror="handleImgError(this)">
+          <div class="img-fallback-label">Foto Bebek Goreng Kremes<br><small>(ganti menu-1.jpg dengan foto asli)</small></div>
+        </div>
+      </div>
+      <div class="seal">
+        <div class="seal-inner"><strong>100%</strong><span>EMPUK</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KEUNGGULAN ============ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">Kenapa Pilih Kami</span>
+      <h2 class="section-title">Kenapa Pelanggan Selalu Kembali?</h2>
+    </div>
+    <div class="badges-grid">
+      <div class="badge-card reveal">
+        <div class="badge-icon">🦆</div>
+        <h3>Empuk Sampai ke Tulang</h3>
+        <p>Bebek dimasak dengan bumbu resep keluarga sampai empuk merata, bahkan sampai ke bagian tulang.</p>
+      </div>
+      <div class="badge-card reveal">
+        <div class="badge-icon">🌿</div>
+        <h3>Tidak Bau Amis</h3>
+        <p>Proses pembersihan khusus membuat bebek benar-benar bersih dan bebas dari bau amis.</p>
+      </div>
+      <div class="badge-card reveal">
+        <div class="badge-icon">👨‍👩‍👧‍👦</div>
+        <h3>Resep Rahasia Keluarga</h3>
+        <p>Racikan bumbu turun-temurun yang sudah dipercaya sejak lama, hanya ada di sini.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="section" id="menu">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">Menu &amp; Harga</span>
+      <h2 class="section-title">Menu Favorit Pelanggan</h2>
+      <p class="section-sub center">Semua bebek digoreng segar setiap hari, langsung dari dapur kami.</p>
+    </div>
+    <div class="menu-grid">
+
+      <div class="menu-card reveal">
+        <span class="ribbon">Best Seller</span>
+        <div class="img-wrap">
+          <img src="https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Bebek Goreng Kremes" onerror="handleImgError(this)">
+          <div class="img-fallback-label">Bebek Goreng Kremes</div>
+        </div>
+        <div class="menu-card-body">
+          <h3>Bebek Goreng Kremes</h3>
+          <p class="desc">Bebek goreng dengan taburan kremes renyah dan sambal pilihan.</p>
+          <span class="menu-price">Rp 30.000</span>
+        </div>
+      </div>
+
+      <div class="menu-card reveal">
+        <span class="ribbon">Best Seller</span>
+        <div class="img-wrap">
+          <img src="https://images.pexels.com/photos/5704254/pexels-photo-5704254.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Bebek Bakar Madu" onerror="handleImgError(this)">
+          <div class="img-fallback-label">Bebek Bakar Madu</div>
+        </div>
+        <div class="menu-card-body">
+          <h3>Bebek Bakar Madu</h3>
+          <p class="desc">Dibakar dengan olesan madu asli hingga harum dan meresap.</p>
+          <span class="menu-price">Rp 32.000</span>
+        </div>
+      </div>
+
+      <div class="menu-card reveal">
+        <div class="img-wrap">
+          <img src="https://images.pexels.com/photos/32067295/pexels-photo-32067295.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Bebek Goreng Original" onerror="handleImgError(this)">
+          <div class="img-fallback-label">Bebek Goreng Original</div>
+        </div>
+        <div class="menu-card-body">
+          <h3>Bebek Goreng Original</h3>
+          <p class="desc">Cita rasa klasik, bumbu meresap sampai ke dalam daging.</p>
+          <span class="menu-price">Rp 26.000</span>
+        </div>
+      </div>
+
+      <div class="menu-card reveal">
+        <div class="img-wrap">
+          <img src="https://images.pexels.com/photos/5618848/pexels-photo-5618848.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Paket Nasi Bebek Komplit" onerror="handleImgError(this)">
+          <div class="img-fallback-label">Paket Nasi Bebek Komplit</div>
+        </div>
+        <div class="menu-card-body">
+          <h3>Paket Nasi Bebek Komplit</h3>
+          <p class="desc">Nasi, bebek, lalapan, dan sambal pilihan dalam satu paket.</p>
+          <span class="menu-price">Rp 35.000</span>
+        </div>
+      </div>
+
+      <div class="menu-card reveal">
+        <div class="img-wrap">
+          <img src="https://images.pexels.com/photos/19259179/pexels-photo-19259179.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Paket Bebek Keluarga isi 4 porsi" onerror="handleImgError(this)">
+          <div class="img-fallback-label">Paket Bebek Keluarga (4 Porsi)</div>
+        </div>
+        <div class="menu-card-body">
+          <h3>Paket Bebek Keluarga</h3>
+          <p class="desc">Isi 4 porsi bebek pilihan, pas untuk makan bersama keluarga.</p>
+          <span class="menu-price">Rp 120.000</span>
+        </div>
+      </div>
+
+    </div>
+    <p class="menu-note">*Harga contoh — mohon disesuaikan dengan daftar menu &amp; harga asli dari Bapak/Ibu.</p>
+  </div>
+</section>
+
+<!-- ============ SAMBAL ============ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">Sambal Andalan</span>
+      <h2 class="section-title">Tiga Pilihan Sambal Andalan</h2>
+    </div>
+    <div class="sambal-grid">
+      <div class="sambal-card reveal">
+        <span class="sambal-chip">Pedas Menyengat</span>
+        <h3>Sambal Korek</h3>
+        <p>Sambal khas rumahan dengan rasa pedas yang menyengat dan segar.</p>
+      </div>
+      <div class="sambal-card reveal">
+        <span class="sambal-chip">Segar &amp; Wangi</span>
+        <h3>Sambal Ijo</h3>
+        <p>Terbuat dari cabai hijau pilihan, segar dengan aroma yang khas.</p>
+      </div>
+      <div class="sambal-card reveal">
+        <span class="sambal-chip">Pedas Asam</span>
+        <h3>Sambal Mangga Muda</h3>
+        <p>Perpaduan pedas dan asam segar dari mangga muda pilihan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAPUR / VIDEO ============ -->
+<section class="section">
+  <div class="container dapur-grid">
+    <div class="reveal">
+      <span class="eyebrow">Dapur Kami</span>
+      <h2 class="section-title">Dapur Bersih, Hati Tenang</h2>
+      <p class="section-sub">Kami memasak di dapur yang selalu bersih dan higienis, karena kepercayaan Bapak/Ibu adalah yang paling penting bagi kami. Tonton suasana dapur kami di video berikut.</p>
+    </div>
+    <div class="video-frame reveal">
+      <video controls preload="none" poster="https://images.pexels.com/photos/15323383/pexels-photo-15323383.jpeg?auto=compress&cs=tinysrgb&w=1200">
+        <source src="video-dapur.mp4" type="video/mp4">
+        Maaf, video tidak dapat diputar di perangkat ini.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KATERING ============ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="katering-box reveal">
+      <span class="eyebrow" style="color: var(--gold-light);">Untuk Acara Besar</span>
+      <h2>Cocok untuk Arisan &amp; Acara Kantor</h2>
+      <p>Pesan dalam jumlah banyak untuk arisan, syukuran, atau acara kantor. Tim kami siap bantu atur paket sesuai kebutuhan Bapak/Ibu.</p>
+      <a class="btn btn-wa" href="https://wa.me/6281234567890?text=Halo%20Admin%2C%20saya%20ingin%20tanya%20paket%20katering%20untuk%20acara%20arisan%2Fkantor.%20Mohon%20info%20selanjutnya.">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2zm5.8 14.13c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.33-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.7-.17 1.38z"/></svg>
+        Tanya Paket Katering
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORM PESAN ============ -->
+<section class="section" id="pesan">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">Formulir Pesan</span>
+      <h2 class="section-title">Pesan Sekarang, Mudah dan Cepat</h2>
+      <p class="section-sub center">Isi data di bawah ini. Pesanan akan otomatis terkirim ke WhatsApp kami.</p>
+    </div>
+
+    <div class="order-card reveal">
+      <div class="field">
+        <label for="nama">Nama Anda</label>
+        <input type="text" id="nama" placeholder="Contoh: Ibu Sari" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="nowa">Nomor WhatsApp Anda</label>
+        <input type="tel" id="nowa" placeholder="Contoh: 08123456789" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="paket">Pilih Menu / Paket</label>
+        <select id="paket">
+          <option>Bebek Goreng Kremes</option>
+          <option>Bebek Bakar Madu</option>
+          <option>Bebek Goreng Original</option>
+          <option>Paket Nasi Bebek Komplit</option>
+          <option>Paket Bebek Keluarga (4 Porsi)</option>
+          <option>Paket Arisan / Kantor (Custom)</option>
+        </select>
+      </div>
+      <p class="form-error" id="formError">Mohon isi Nama dan Nomor WhatsApp terlebih dahulu, ya.</p>
+      <button class="btn btn-wa" onclick="kirimPesanan()">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2zm5.8 14.13c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.33-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.7-.17 1.38z"/></svg>
+        Kirim Pesanan via WhatsApp
+      </button>
+      <p class="form-success" id="formSuccess">Membuka WhatsApp... jika tidak terbuka otomatis, pastikan WhatsApp sudah terpasang di HP Anda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <span class="brand-name">Bebek Goreng Maju Bersama</span>
+    <p>Jl. Contoh No. 123, [Nama Kota] &middot; Buka Setiap Hari, 09.00 – 21.00</p>
+    <p>WhatsApp: +62 812-3456-7890</p>
+    <p class="copyright">&copy; 2026 Bebek Goreng Maju Bersama. Semua hak dilindungi.</p>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WA BUTTON ============ -->
+<a class="float-wa" href="https://wa.me/6281234567890?text=Halo%20Admin%2C%20saya%20ingin%20bertanya%20tentang%20menu%20Bebek%20Goreng%20Maju%20Bersama." aria-label="Hubungi kami via WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2zm5.8 14.13c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.33-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.7-.17 1.38z"/></svg>
+</a>
+
+<script>
+  // ===== Nomor WhatsApp Admin (ganti dengan nomor asli) =====
+  const NOMOR_WA_ADMIN = "6281234567890";
+
+  // ===== Fallback gambar placeholder yang belum diganti =====
+  function handleImgError(img){
+    img.onerror = null;
+    img.closest('.img-wrap').classList.add('broken');
+  }
+
+  // ===== Kirim pesanan ke WhatsApp =====
+  function kirimPesanan(){
+    const nama = document.getElementById('nama').value.trim();
+    const nowa = document.getElementById('nowa').value.trim();
+    const paket = document.getElementById('paket').value;
+    const errorEl = document.getElementById('formError');
+    const successEl = document.getElementById('formSuccess');
+
+    if(!nama || !nowa){
+      errorEl.classList.add('show');
+      successEl.classList.remove('show');
+      return;
+    }
+    errorEl.classList.remove('show');
+
+    const pesan = `Halo Admin, saya ${nama}, ingin memesan ${paket}. Mohon info selanjutnya. No WA saya: ${nowa}`;
+    const url = `https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(pesan)}`;
+    successEl.classList.add('show');
+    window.open(url, '_blank');
+  }
+
+  // ===== Scroll reveal (menghormati preferensi reduced motion) =====
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+
+  if(prefersReduced || !('IntersectionObserver' in window)){
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+  }
+</script>
+
+</body>
+</html>
